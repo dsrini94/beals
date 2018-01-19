@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+
+import CreatePO from './client/views/createPO.jsx';
+import Summary from './client/views/summary.jsx';
+
+
+
+ReactDOM.render(<CreatePO />, document.getElementById('app'));
