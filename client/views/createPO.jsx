@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radio,Grid, Image,Form,Dropdown,TextArea,Button } from 'semantic-ui-react';
+import { Radio,Grid, Image,Form,Dropdown,TextArea,Button,Icon,Segment } from 'semantic-ui-react';
 
 import POList from './../components/poList.jsx';
 
@@ -48,6 +48,16 @@ export default class CreatePO extends React.Component {
                   </Form>
                 </Grid.Column>
               </Grid.Row>
+
+              <Grid.Row>
+                <Grid.Column width={12} />
+                <Grid.Column width={4}>
+                  <Button icon circular inverted style={{backgroundColor:'#d83656'}}>
+                    <Icon name='plus' />
+                  </Button>
+                </Grid.Column>
+              </Grid.Row>
+
 
               <Grid.Row>
                 <Grid.Column>
