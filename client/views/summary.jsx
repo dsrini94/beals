@@ -1,6 +1,6 @@
 import React from 'react'
 import {Icon,Grid, Image,Form,Dropdown,TextArea,Button,Card,Header,Label } from 'semantic-ui-react';
-
+import {HashRouter, Route, Link} from 'react-router-dom';
 export default class Summary extends React.Component
 {
   render()
@@ -9,7 +9,7 @@ export default class Summary extends React.Component
       <Grid padded>
         <Grid.Row>
           <Grid.Column width={16}>
-            <Image src='./../../images/logo.jpg' />
+            <Image as={Link} to='/' src='./../../images/logo.jpg' />
           </Grid.Column>
         </Grid.Row>
 
@@ -37,11 +37,6 @@ export default class Summary extends React.Component
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row>
-          <Grid.Column width={16}>
-            <center><Button inverted circular icon size='massive' style={{backgroundColor:'#d83656'}}><Icon name="home" /></Button></center>
-          </Grid.Column>
-        </Grid.Row>
 
       </Grid>
     )
