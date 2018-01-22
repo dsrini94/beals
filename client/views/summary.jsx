@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon,Grid, Image,Form,Dropdown,TextArea,Button,Card,Header,Label } from 'semantic-ui-react';
+import {Icon,Grid, Image,Form,Dropdown,TextArea,Button,Card,Header,Label, Radio } from 'semantic-ui-react';
 
 import {HashRouter, Route, Link} from 'react-router-dom';
 
@@ -23,7 +23,16 @@ class Summary extends React.Component
             <Image as={Link} to='/' src='./../../images/logo.jpg' />
           </Grid.Column>
         </Grid.Row>
+        <Grid.Row>
+        <Grid.Column width={9}/>
+          <Grid.Column width={3}>
 
+            <Radio toggle label='Data' style={{
+            color: '#7af442',
+            marginBottom: '15px'
+          }}/>
+        </Grid.Column>
+        </Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
           {this.props.dataState.itemArray.map((item,key)=>{

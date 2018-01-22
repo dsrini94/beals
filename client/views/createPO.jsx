@@ -77,7 +77,16 @@ submitmodal(){
             <Image as={Link} to='/' src='./../../images/logo.jpg'/>
           </Grid.Column>
         </Grid.Row>
+<Grid.Row>
+<Grid.Column width={9}/>
+  <Grid.Column width={3}>
 
+    <Radio toggle label='Data' checked={this.props.dataState.toggleState} style={{
+    color: '#7af442',
+    marginBottom: '15px'
+  }} onChange={this.props.handleDataToggle}/>
+</Grid.Column>
+</Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
             <Form>
@@ -125,6 +134,7 @@ submitmodal(){
               <Icon name='plus'/>
             </Button>
           </Grid.Column>
+          <Grid.Column width={7}/>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
@@ -132,25 +142,19 @@ submitmodal(){
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row style={{
-            marginTop: '100px'
-          }}>
+        <Grid.Row>
           <Grid.Column width={16}>
-            <Radio toggle label='Data' checked={this.props.dataState.toggleState} style={{
-                color: '#7af442',
-                marginBottom: '15px'
-              }} onChange={this.props.handleDataToggle}/>
             <Button fluid inverted style={{
                 backgroundColor: '#b70b2d',
                 borderRadius: '15px'
               }} onClick={this.submitmodal.bind(this)}>
               Submit PO
             </Button>
-            <Button fluid color='yellow' style={{
+            <Button as={Link} to='/' fluid color='yellow' style={{
                 borderRadius: '15px',
                 marginTop: '5px'
               }}>
-              Delete PO
+              Cancel PO
             </Button>
           </Grid.Column>
         </Grid.Row>

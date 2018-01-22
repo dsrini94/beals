@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Grid, Image, Button} from "semantic-ui-react";
+import { Container, Grid, Image, Button, Radio} from "semantic-ui-react";
 import Popage from './../views/createPO.jsx';
 import {HashRouter, Route, Link} from 'react-router-dom';
 export default class Homepage extends Component {
@@ -29,7 +29,16 @@ export default class Homepage extends Component {
               </Grid.Column>
               <Grid.Column width={2} />
           </Grid.Row>
-          <Grid.Row />
+          <Grid.Row>
+          <Grid.Column width={9}/>
+            <Grid.Column width={3}>
+
+              <Radio toggle label='Data' style={{
+              color: '#7af442',
+              marginBottom: '15px'
+            }}/>
+          </Grid.Column>
+          </Grid.Row>
           <Grid.Row />
           <Grid.Row>
               <Grid.Column width={2} />
