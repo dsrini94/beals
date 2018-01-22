@@ -1,6 +1,7 @@
 module.exports = (state={
   toggleState:false,
-  itemArray:[]
+  itemArray:[],
+  tempItemArray:[]
 },action)=>{
   switch(action.type){
   case "toggle":
@@ -11,21 +12,28 @@ module.exports = (state={
       itemArray:state.itemArray.map((item)=>{
         item.status = 'submitted';
         return item
-      })
+      }),
+      tempItemArray:state.tempItemArray
     }
   }
   else {
     return {
       toggleState:!state.toggleState,
-      itemArray:state.itemArray
+      itemArray:state.itemArray,
+      tempItemArray:state.tempItemArray
+
     }
   }
   break;
   case "addItem":
-    state.itemArray = action.itemArray
+    var temp = [];
+    temp = state.itemArray;
+    temp.push(action.item);
+    state.itemAr = action.item
     return{
       toggleState:state.toggleState,
-      itemArray:state.itemArray
+      itemArray:temp,
+      tempItemArray:[]
     }
     break;
   case "remove":
@@ -36,6 +44,16 @@ module.exports = (state={
         return item
     })
   }
+  break;
+  case "addNewTempItem":
+    var temp = [];
+    temp = state.tempItemArray;
+    temp.push(action.tempItem);
+    return{
+      toggleState:state.toggleState,
+      itemArray:state.itemArray,
+      tempItemArray:temp
+    }
   break;
   }
   return state;

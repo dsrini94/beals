@@ -1,6 +1,6 @@
-module.exports = (itemArray)=>{
+module.exports = (item)=>{
   return{
     type:'addItem',
-    itemArray:itemArray
+    item:item
   }
 }

@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 
 import Deletemodal from './deleteModal.jsx';
 import addItemReducer from './../../redux/actions/newItem.js';
+import addNewTempItem from './../../redux/actions/addNewTempItem.js'
 
 var array = [];
 
@@ -78,18 +79,14 @@ handleQuantity(e)
 
 handleItem()
 {
-  var status = this.props.dataState.toggleState ? 'submitted' : 'saved';
-
-  array.push({
-    status:status,
+  var item = {
     supplier:this.props.match.params.supplier,
     itemNumber:this.state.item,
     cost:this.state.cost,
     quantity:this.state.quantity,
     totalCost:this.state.quantity*this.state.cost
-  })
-
-  this.props.addItemReducer(array)
+  }
+  this.props.addNewItem(item)
 
 }
  render() {
@@ -127,7 +124,7 @@ handleItem()
             <input placeholder='Quantity' onChange={this.handleQuantity.bind(this)}/>
            </Form.Field>
            <Button fluid type='submit' positive style={{color:'white',borderRadius: '15px',marginTop:'20%'}} onClick={this.handleItem.bind(this)}>Add Item</Button>
-           <Link to='/createPO'><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
+           <Link to={'/createPO/'+this.props.match.params.poId}><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
 
         </Link></Form>
     </div>
@@ -171,6 +168,7 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     addItemReducer: addItemReducer,
+    addNewItem:addNewTempItem
   }, dispatch)
 }
 

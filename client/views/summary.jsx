@@ -8,8 +8,14 @@ import {bindActionCreators} from 'redux';
 
 class Summary extends React.Component
 {
+  constructor(props)
+  {
+    super(props);
+  }
+
   render()
   {
+    var d = new Date();
     return(
       <Grid padded>
         <Grid.Row>
@@ -21,21 +27,26 @@ class Summary extends React.Component
         <Grid.Row>
           <Grid.Column width={16}>
           {this.props.dataState.itemArray.map((item,key)=>{
+            var totalCost=0,totalCount=0
+            item.items.map((list,index)=>{
+              totalCost += list.totalCost;
+              totalCount += parseInt(list.quantity);
+            })
             return(
               <Card fluid color='red' key={key}>
                 <Card.Content>
                   <Grid>
                     <Grid.Row>
                       <Grid.Column width={8}>
-                        <Header as='h4'><span className="fontStyle">Supplier:{item.supplier}</span></Header>
-                          <Header as='h5' style={{color:'#d83656'}}>Total Cost: ${item.totalCost}</Header>
-                          <Header as='h5' style={{color:'#d83656'}}>Total Qty: {item.quantity}</Header>
-                          <Header as='h5' style={{color:'#d83656'}}>Item Count: 2</Header>
+                        <Header as='h4'><span className="fontStyle">Supplier:{item.items[0].supplier}</span></Header>
+                          <Header as='h5' style={{color:'#d83656'}}>Total Cost: ${totalCost}</Header>
+                          <Header as='h5' style={{color:'#d83656'}}>Total Qty: {totalCount}</Header>
+                          <Header as='h5' style={{color:'#d83656'}}>Item Count: {item.items.length}</Header>
                       </Grid.Column>
                       <Grid.Column width={8}>
-                        <Header as='h4'><span className="fontStyle">PO#:100045639</span></Header>
+                        <Header as='h4'><span className="fontStyle">PO#:{item.poId}</span></Header>
                           <Header as='h5' style={{color:'#d83656'}}>Status: PO {item.status}</Header>
-                          <Header as='h5' style={{color:'#d83656'}}>Submit Date: 1-8-2017</Header>
+                          <Header as='h5' style={{color:'#d83656'}}>Submit Date: {d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()}</Header>
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
