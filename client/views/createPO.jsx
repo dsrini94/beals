@@ -10,7 +10,7 @@ import {bindActionCreators} from 'redux';
 import POList from './../components/poList.jsx';
 
 import handleDataToggle from './../../redux/actions/dataToggle.js'
-
+import Submitmodal from './../components/submitModal.jsx';
 
 class CreatePO extends React.Component {
 
@@ -40,7 +40,8 @@ class CreatePO extends React.Component {
           text: 'Red Tape',
           value: 'Red Tape'
         }
-      ]
+      ],
+      submitmsg:false
     }
   }
 
@@ -48,10 +49,17 @@ class CreatePO extends React.Component {
   {
     this.setState({supplier:value})
   }
-
+submitmodal(){
+  console.log('hiiiiiiiiii');
+  this.setState({submitmsg:true})
+  var msg = this.props.dataState.toggleState ? 'Your data has been submitted successfully' : 'Your PO is saved and it will be submitted once your internet connectivity is switched on'
+  this.setState({successmsg:msg})
+}
   render() {
     console.log(this.props.dataState);
+    console.log('inside ceate po ', this.state.successmsg);
     return (<div>
+      {this.state.submitmsg ? <Submitmodal successmsg={this.state.successmsg}/> : null}
       <Grid padded>
         <Grid.Row>
           <Grid.Column width={16}>
@@ -124,7 +132,7 @@ class CreatePO extends React.Component {
             <Button fluid inverted style={{
                 backgroundColor: '#b70b2d',
                 borderRadius: '15px'
-              }}>
+              }} onClick={this.submitmodal.bind(this)}>
               Submit PO
             </Button>
             <Button fluid color='yellow' style={{

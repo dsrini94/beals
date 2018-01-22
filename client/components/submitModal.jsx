@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { Modal,Button,Grid} from "semantic-ui-react";
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import removeItem from './../../redux/actions/removeItem.js'
-class Deletemodal extends Component {
+
+export default class Deletemodal extends Component {
   constructor() {
     super();
     this.state={
@@ -16,24 +14,21 @@ handleclose(){
   this.setState({ open: false })
 }
  render() {
-
+console.log('inside modal',this.props.successmsg);
     return (
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}/>
           <Grid.Column width={12}>
       <Modal basic open={this.state.open}>
-                <Modal.Header>
-                  Delete Your Account
-                </Modal.Header>
                 <Modal.Content>
-                  <p>Are you sure you want to delete this item</p>
+                  <p>{this.props.successmsg}</p>
                 </Modal.Content>
                 <Modal.Actions>
                   <Button negative onClick={this.handleclose.bind(this)}>
-                    No
+                    Ok
                   </Button>
-                  <Button positive onClick={this.props.handleremoveItem(this.props.index)}>Yes</Button>
+
                 </Modal.Actions>
               </Modal>
             </Grid.Column>
@@ -43,14 +38,3 @@ handleclose(){
     );
   }
 }
-function mapStateToProps(state) {
-  return {dataState: state.poReducer}
-}
-
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({
-    handleremoveItem: removeItem,
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Deletemodal);

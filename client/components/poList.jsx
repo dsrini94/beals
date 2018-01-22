@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image, List,Icon,Radio } from 'semantic-ui-react';
+import { Button, Image, List,Icon,Radio,Modal } from 'semantic-ui-react';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -11,6 +11,7 @@ class POList extends React.Component
   constructor()
   {
     super();
+    this.state={open:true,index:0}
   }
   render()
   {
