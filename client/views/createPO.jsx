@@ -12,6 +12,8 @@ import POList from './../components/poList.jsx';
 import handleDataToggle from './../../redux/actions/dataToggle.js'
 import Submitmodal from './../components/submitModal.jsx';
 
+import addItemReducer from './../../redux/actions/newItem.js';
+
 class CreatePO extends React.Component {
 
   constructor() {
@@ -41,25 +43,34 @@ class CreatePO extends React.Component {
           value: 'Red Tape'
         }
       ],
-      submitmsg:false
+      submitmsg:false,
+      poId:'',
+      item:''
     }
   }
 
+
   handleSuplier(e,{value})
   {
-    this.setState({supplier:value})
+    this.setState({supplier:value,poId:this.props.match.params.poId})
   }
+
 submitmodal(){
-  console.log('hiiiiiiiiii');
+  var status = this.props.dataState.toggleState ? 'submitted' : 'saved'
+  var item = {
+    poId:this.props.match.params.poId,
+    items:this.props.dataState.tempItemArray,
+    status:status
+  };
   this.setState({submitmsg:true})
   var msg = this.props.dataState.toggleState ? 'Your data has been submitted successfully' : 'Your PO is saved and it will be submitted once your internet connectivity is switched on'
-  this.setState({successmsg:msg})
+  this.setState({successmsg:msg,item:item})
+
 }
   render() {
     console.log(this.props.dataState);
-    console.log('inside ceate po ', this.state.successmsg);
     return (<div>
-      {this.state.submitmsg ? <Submitmodal successmsg={this.state.successmsg}/> : null}
+      {this.state.submitmsg ? <Submitmodal successmsg={this.state.successmsg} item={this.state.item}/> : null}
       <Grid padded>
         <Grid.Row>
           <Grid.Column width={16}>
@@ -89,15 +100,15 @@ submitmodal(){
                 </label>
                 <Dropdown placeholder='Select Suppliers' fluid  selection options={this.state.options} onChange={this.handleSuplier.bind(this)}/>
               </Form.Field>
-              <Form.Field>
+              <Form.Field style={{marginBottom:'20px'}}>
                 <label style={{
                     color: '#d83656',
                     fontSize: '18px',
                     fontWeight: 'bold'
                   }}>
-                  <span className="fontStyle">Enter PO</span>
+                  <span className="fontStyle">PO Id</span>
                 </label>
-                <input placeholder='PO'/>
+                <label>{this.state.poId}</label>
               </Form.Field>
               <Form.Field>
                 <label style={{
@@ -115,9 +126,9 @@ submitmodal(){
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={7}/>
-          <Grid.Column width={2}>
-            <Button as={Link} to={'/addItem/'+this.state.supplier} icon circular inverted style={{
+          <Grid.Column width={12}/>
+          <Grid.Column width={4}>
+            <Button as={Link} to={'/addItem/'+this.state.supplier+'/'+this.state.poId} icon circular inverted style={{
                 backgroundColor: '#d83656'
               }} >
               <Icon name='plus'/>
@@ -127,7 +138,7 @@ submitmodal(){
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <POList/>
+            <POList poId={this.props.match.params.poId}/>
           </Grid.Column>
         </Grid.Row>
 
@@ -160,6 +171,7 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     handleDataToggle: handleDataToggle,
+    addItemReducer: addItemReducer,
   }, dispatch)
 }
 

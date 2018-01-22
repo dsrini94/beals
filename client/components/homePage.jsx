@@ -5,9 +5,16 @@ import {HashRouter, Route, Link} from 'react-router-dom';
 export default class Homepage extends Component {
   constructor() {
     super();
+    this.state={
+      poId:''
+    }
 
   }
 
+  componentDidMount()
+  {
+    this.setState({poId:Math.floor(1000 + Math.random() * 900000)})
+  }
 
  render() {
     return (
@@ -37,7 +44,7 @@ export default class Homepage extends Component {
               <Grid.Column width={2} />
               <Grid.Column width={12}>
                 <center>
-                <Button as={Link} to='/createPO' size='massive' style={{backgroundColor:'#B71236',color:'white',width:'100%',height:'80px',boxShadow: '0px 6px 0px #B71236, 0px 3px 15px rgba(0,0,0,.4)'}}>Create New Buy</Button>
+                <Button as={Link} to={'/createPO/'+this.state.poId} size='massive' style={{backgroundColor:'#B71236',color:'white',width:'100%',height:'80px',boxShadow: '0px 6px 0px #B71236, 0px 3px 15px rgba(0,0,0,.4)'}}>Create New Buy</Button>
               </center>
               </Grid.Column>
               <Grid.Column width={2} />

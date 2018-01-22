@@ -20,8 +20,8 @@ ReactDOM.render(
         <HashRouter>
         <div>
           <Route exact path='/' component={Homepage}/>
-          <Route  path='/createPO' component={CreatePO}/>
-          <Route  path='/addItem/:supplier' component={Additem}/>
+          <Route  path='/createPO/:poId' component={CreatePO}/>
+          <Route  path='/addItem/:supplier/:poId' component={Additem}/>
           <Route  path='/summary' component={Summary}/>
         </div>
         </HashRouter>

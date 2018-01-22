@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import addItemReducer from './../../redux/actions/newItem.js';
+import addNewTempItem from './../../redux/actions/addNewTempItem.js'
+
 var array = [];
 
 class Additem extends Component {
@@ -76,19 +78,15 @@ handleQuantity(e)
 
 handleAddItem()
 {
-  console.log('inside add item');
-  var status = this.props.dataState.toggleState ? 'submitted' : 'saved';
-
-  array.push({
-    status:status,
+  var item = {
     supplier:this.props.match.params.supplier,
     itemNumber:this.state.item,
     cost:this.state.cost,
     quantity:this.state.quantity,
     totalCost:this.state.quantity*this.state.cost
-  })
+  }
+  this.props.addNewItem(item)
 
-  this.props.addItemReducer(array)
 }
 
  render() {
@@ -123,8 +121,8 @@ handleAddItem()
             <label style={{color:'#B71236'}}>Quantity</label>
             <input placeholder='Quantity' onChange={this.handleQuantity.bind(this)}/>
            </Form.Field>
-           <Button as={Link} to='/createPO' fluid type='submit' positive style={{color:'white',borderRadius:'15px',marginTop:'20%'}} onClick={this.handleAddItem.bind(this)}>Add Item</Button>
-           <Link to='/createPO'><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
+           <Button fluid type='submit' positive style={{color:'white',borderRadius: '15px',marginTop:'20%'}} onClick={this.handleItem.bind(this)}>Add Item</Button>
+           <Link to={'/createPO/'+this.props.match.params.poId}><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
 
         </Link></Form>
     </div>
@@ -145,6 +143,7 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     addItemReducer: addItemReducer,
+    addNewItem:addNewTempItem
   }, dispatch)
 }
 

@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import { Modal,Button,Grid} from "semantic-ui-react";
-import {HashRouter, Route, Link} from 'react-router-dom';
-export default class Deletemodal extends Component {
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import addItemReducer from './../../redux/actions/newItem.js';
+
+class Deletemodal extends Component {
   constructor() {
     super();
     this.state={
@@ -10,8 +15,8 @@ export default class Deletemodal extends Component {
   }
 
 handleclose(){
-  console.log('open',this.state.open);
   this.setState({ open: false })
+  this.props.addItemReducer(this.props.item)
 }
  render() {
 console.log('inside modal',this.props.successmsg);
@@ -28,7 +33,6 @@ console.log('inside modal',this.props.successmsg);
                   <Button as={Link} to='/summary' negative onClick={this.handleclose.bind(this)}>
                     Ok
                   </Button>
-
                 </Modal.Actions>
               </Modal>
             </Grid.Column>
@@ -38,3 +42,15 @@ console.log('inside modal',this.props.successmsg);
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {dataState: state.poReducer}
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({
+    addItemReducer: addItemReducer,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Deletemodal);
