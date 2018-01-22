@@ -106,14 +106,15 @@ submitmodal(){
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={12}/>
-          <Grid.Column width={4}>
+          <Grid.Column width={7}/>
+          <Grid.Column width={2}>
             <Button as={Link} to={'/addItem/'+this.state.supplier} icon circular inverted style={{
                 backgroundColor: '#d83656'
               }} >
               <Icon name='plus'/>
             </Button>
           </Grid.Column>
+          <Grid.Column width={7}/>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
