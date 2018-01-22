@@ -15,6 +15,7 @@ class Additem extends Component {
     super();
 this.state={
     cost:0,
+    description:'',
     quantity:0,
     item:'',
     itemArray:[],
@@ -49,15 +50,20 @@ this.state={
 handleProducts(e,{value})
 {
   this.setState({item:value});
-  if(value == 'T-Shirts' || value == 'Slippers')
-    this.setState({cost:70})
+  console.log('on change', this.state.item);
+  if(value == 'T-Shirts' && value == 'T-Shirts')
+    this.setState({description:'This is a cotton tshirt',cost:70})
   else
-  if(value == 'Track Pants' || value == 'Bags')
-    this.setState({cost:100})
+  if(value == 'Track Pants' && value == 'Track Pants')
+    this.setState({description:'This is a cotton track pants',cost:100})
+    else
+      if(value == 'Slippers' && value == 'Slippers')
+      this.setState({description:'Leather shoes',cost:70})
+      else if(value == 'Bags' && value == 'Bags')
+      this.setState({description:'Leather Bags',cost:100})
   else
-  this.setState({cost:150})
+  this.setState({description:'sports shoe',cost:150})
 }
-
 handleItemClick(e,{name}){
   if(name=='New Item')
   this.setState({index:0,activeItem:name})
@@ -102,22 +108,22 @@ handleAddItem()
     <div>
       <Form>
       <Form.Field>
-      <label style={{color:'#B71236'}}>Item Number</label>
+      <label style={{color:'#B71236'}}>Item Name</label>
       <Dropdown placeholder='Item Number' fluid  selection options={this.state.options} onChange={this.handleProducts.bind(this)}/>
           </Form.Field>
            <Form.Field>
              <label style={{color:'#B71236'}}>Item Description</label>
-             <input placeholder='Item Description' />
+             <label>{this.state.description}</label>
            </Form.Field>
          <Form.Field>
              <label style={{color:'#B71236'}}>Unit Cost</label>
-             <Label>${this.state.cost}</Label>
+             <label>${this.state.cost}</label>
            </Form.Field>
           <Form.Field>
             <label style={{color:'#B71236'}}>Quantity</label>
             <input placeholder='Quantity' onChange={this.handleQuantity.bind(this)}/>
            </Form.Field>
-           <Button as={Link} to='/createPO' fluid type='submit' positive style={{color:'white',borderRadius: '15px',marginTop:'20%'}} onClick={this.handleAddItem.bind(this)}>Add Item</Button>
+           <Button as={Link} to='/createPO' fluid type='submit' positive style={{color:'white',borderRadius:'15px',marginTop:'20%'}} onClick={this.handleAddItem.bind(this)}>Add Item</Button>
            <Link to='/createPO'><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
 
         </Link></Form>
