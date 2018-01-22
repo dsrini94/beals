@@ -126,7 +126,7 @@ handleItem()
             <label style={{color:'#B71236'}}>Quantity</label>
             <input placeholder='Quantity' onChange={this.handleQuantity.bind(this)}/>
            </Form.Field>
-           <Button fluid type='submit' positive style={{color:'white',borderRadius: '15px',marginTop:'20%'}} onClick={this.handleItem.bind(this)}>Add Item</Button>
+           <Button as={Link} to='/createPO' fluid type='submit' positive style={{color:'white',borderRadius: '15px',marginTop:'20%'}} onClick={this.handleItem.bind(this)}>Add Item</Button>
            <Link to='/createPO'><Button negative fluid type='submit' inverted style={{borderRadius: '15px',marginTop:'2%'}}>Cancel</Button>
 
         </Link></Form>
