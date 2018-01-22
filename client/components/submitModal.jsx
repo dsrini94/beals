@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Modal,Button,Grid} from "semantic-ui-react";
-
+import {HashRouter, Route, Link} from 'react-router-dom';
 export default class Deletemodal extends Component {
   constructor() {
     super();
@@ -25,7 +25,7 @@ console.log('inside modal',this.props.successmsg);
                   <p>{this.props.successmsg}</p>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button negative onClick={this.handleclose.bind(this)}>
+                  <Button as={Link} to='/summary' negative onClick={this.handleclose.bind(this)}>
                     Ok
                   </Button>
 

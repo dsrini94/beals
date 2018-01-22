@@ -66,7 +66,16 @@ submitmodal(){
             <Image as={Link} to='/' src='./../../images/logo.jpg'/>
           </Grid.Column>
         </Grid.Row>
+<Grid.Row>
+<Grid.Column width={9}/>
+  <Grid.Column width={3}>
 
+    <Radio toggle label='Data' checked={this.props.dataState.toggleState} style={{
+    color: '#7af442',
+    marginBottom: '15px'
+  }} onChange={this.props.handleDataToggle}/>
+</Grid.Column>
+</Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
             <Form>
@@ -124,10 +133,6 @@ submitmodal(){
 
         <Grid.Row>
           <Grid.Column width={16}>
-            <Radio toggle label='Data' checked={this.props.dataState.toggleState} style={{
-                color: '#7af442',
-                marginBottom: '15px'
-              }} onChange={this.props.handleDataToggle}/>
             <Button fluid inverted style={{
                 backgroundColor: '#b70b2d',
                 borderRadius: '15px'
